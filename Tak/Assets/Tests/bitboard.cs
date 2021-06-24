@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
+using System;
 
 public class bitboard
 {
@@ -16,18 +12,19 @@ public class bitboard
 
         // Act
         c = Bitboard.Precompute(5);
-        expectedConstants.Bottom = (UInt64)(1 << 5) - 1;
-        expectedConstants.Top = (UInt64)((1 << 5) - 1) << (4 * 5);
-        expectedConstants.Right = (UInt64)0x0108421;
-        expectedConstants.Left = (UInt64)0x1084210;
-        expectedConstants.Mask = (UInt64)0x1ffffff;
+
+        expectedConstants.Bottom = (0b_1UL << 5) - 1;
+        expectedConstants.Top = ((0b_1UL << 5) - 1) << (4 * 5);
+        expectedConstants.Right = 0x0108421;
+        expectedConstants.Left = 0x1084210;
+        expectedConstants.Mask = 0x1ffffff;
 
         // Assert
-        Assert.AreEqual(c.Bottom, expectedConstants.Bottom);
-        Assert.AreEqual(c.Top, expectedConstants.Top);
-        Assert.AreEqual(c.Right, expectedConstants.Right);
-        Assert.AreEqual(c.Left, expectedConstants.Left);
-        Assert.AreEqual(c.Mask, expectedConstants.Mask);
+        Assert.AreEqual(expectedConstants.Bottom, c.Bottom);
+        Assert.AreEqual(expectedConstants.Top, c.Top);
+        Assert.AreEqual(expectedConstants.Right, c.Right);
+        Assert.AreEqual(expectedConstants.Left, c.Left);
+        Assert.AreEqual(expectedConstants.Mask, c.Mask);
     }
 
     [Test]
@@ -39,17 +36,32 @@ public class bitboard
 
         // Act
         c = Bitboard.Precompute(8);
-        expectedConstants.Bottom = (UInt64)(1 << 8) - 1;
-        expectedConstants.Top = (UInt64)((1 << 8) - 1) << (7 * 8);
-        expectedConstants.Right = (UInt64)0x101010101010101;
-        expectedConstants.Left = (UInt64)0x8080808080808080;
-        expectedConstants.Mask ^= (UInt64)0;
+
+        expectedConstants.Bottom = (0b_1ul << 8) - 1;
+        expectedConstants.Top = ((0b_1ul << 8) - 1) << (7 * 8);
+        expectedConstants.Right = 0x101010101010101;
+        expectedConstants.Left = 0x8080808080808080;
+        expectedConstants.Mask = ~0b0UL;
 
         // Assert
-        Assert.AreEqual(c.Bottom, expectedConstants.Bottom);
-        Assert.AreEqual(c.Top, expectedConstants.Top);
-        Assert.AreEqual(c.Right, expectedConstants.Right);
-        Assert.AreEqual(c.Left, expectedConstants.Left);
-        Assert.AreEqual(c.Mask, expectedConstants.Mask);
+        Assert.AreEqual(expectedConstants.Bottom, c.Bottom);
+        Assert.AreEqual(expectedConstants.Top, c.Top);
+        Assert.AreEqual(expectedConstants.Right, c.Right);
+        Assert.AreEqual(expectedConstants.Left, c.Left);
+        Assert.AreEqual(expectedConstants.Mask, c.Mask);
+    }
+
+    [Test]
+    public void test_flood()
+    {
+        int size = 5;
+        ulong bound = 0x108423c;
+        ulong seed = 0x4;
+        ulong expectedOut = 0x108421c;
+
+        var c = Bitboard.Precompute(size);
+        var actualOut = Bitboard.Flood(ref c, bound, seed);
+
+        Assert.AreEqual(expectedOut, actualOut);
     }
 }

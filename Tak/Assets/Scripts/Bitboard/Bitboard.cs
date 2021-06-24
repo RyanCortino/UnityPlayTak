@@ -8,27 +8,63 @@ public static class Bitboard
 {
     public struct Constants
     {
-        public uint Size;
-        public UInt64 Left, Right, Top, Bottom;
-        public UInt64 Edge;
-        public UInt64 Mask;
+        public int Size;
+        public ulong Left, Right, Top, Bottom;
+        public ulong Edge;
+        public ulong Mask;
     }
 
-    public static Constants Precompute(uint _size)
+    public static Constants Precompute(int size)
     {
-        Constants constants = new Constants();
+        Constants _constants = new Constants();
 
-        for (uint i = 0; i < _size; i++)
+        for (uint i = 0; i < size; i++)
         {
-            constants.Right |= 0b1UL << (int)(i * _size);
+            _constants.Right |= 0b1UL << (int)(i * size);
         }
-        constants.Size = _size;
-        constants.Left = constants.Right << (int)(_size - 1);
-        constants.Top = ((0b1UL << (int)_size) - 1) << (int)(_size * (_size - 1));
-        constants.Bottom = (0b1UL << (int)_size) - 1;
-        constants.Mask = (0b1UL << ((int)_size * (int)_size)) - 1;
-        constants.Edge = (constants.Left | constants.Right | constants.Bottom | constants.Top);
 
-        return constants;
+        _constants.Size = size;
+
+        _constants.Left = _constants.Right << (size - 1);
+
+        _constants.Top = ((0b1UL << size) - 1) << (size * (size - 1));
+
+        _constants.Bottom = (0b1UL << size) - 1;
+
+        _constants.Edge = (_constants.Left | _constants.Right | _constants.Bottom | _constants.Top);
+
+        _constants.Mask
+            = (size < 8)   // Due to overflow restriction's we have to test for a single edge case.
+            ? (0b1UL << (size * size)) - 1
+            : ~0b0UL;
+
+        return _constants;
+    }
+
+    public static ulong Flood(ref Constants constants, ulong within, ulong seed)
+    {
+        ulong _next = new ulong();
+
+        while (true)
+        {
+            _next = Grow(ref constants, within, seed);
+
+            if (_next == seed)
+                return _next;
+            
+            seed = _next;
+        }
+    }
+
+    public static ulong Grow(ref Constants constants, ulong within, ulong seed)
+    {
+        ulong _next = seed;
+
+        _next |= (seed << 1) & ~constants.Right;
+        _next |= (seed >> 1) & ~constants.Left;
+        _next |= (seed >> (int)constants.Size);
+        _next |= (seed << (int)constants.Size);
+
+        return _next & within;
     }
 }
