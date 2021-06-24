@@ -67,4 +67,38 @@ public static class Bitboard
 
         return _next & within;
     }
+
+    public static Tuple<int, int> Dimensions(Constants constants, ulong bits)
+    {
+        int _width = 0;
+        int _height = 0;
+        ulong _bitMask = 0;
+
+        if (bits == 0)
+            return Tuple.Create(_width, _height);
+
+        _bitMask = constants.Left;
+        while ((bits & _bitMask) == 0)
+        {
+            _bitMask >>= 1;
+        }
+        while ((_bitMask != 0) && ((bits & _bitMask) != 0))
+        {
+            _bitMask >>= 1;
+            _width++;
+        }
+        
+        _bitMask = constants.Top;
+        while ((bits & _bitMask) == 0)
+        {
+            _bitMask >>= (int)constants.Size;
+        }
+        while ((_bitMask != 0) && ((bits & _bitMask) != 0))
+        { 
+            _bitMask >>= (int)constants.Size;
+            _height++;
+        }
+        
+        return Tuple.Create(_width, _height);
+    }
 }

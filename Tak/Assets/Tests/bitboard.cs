@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 public class bitboard
 {
@@ -63,5 +64,23 @@ public class bitboard
         var actualOut = Bitboard.Flood(ref c, bound, seed);
 
         Assert.AreEqual(expectedOut, actualOut);
+    }
+
+    [Test]
+    public void test_dimensions()
+    {
+        List<Tuple<int, ulong, int, int>> _testCases = new List<Tuple<int, ulong, int, int>>();
+        _testCases.Add(Tuple.Create(5, (ulong)0x108421c, 3, 5));
+        _testCases.Add(Tuple.Create(5, 0b_0UL, 0, 0));
+        _testCases.Add(Tuple.Create(5, (ulong)0x843800, 3, 3));
+        _testCases.Add(Tuple.Create(5, (ulong)0x08000, 1, 1));
+
+        for (int i = 0; i < _testCases.Count; i++)
+        {
+            Bitboard.Constants c = Bitboard.Precompute(_testCases[i].Item1);
+            Tuple<int, int> dimensions = Bitboard.Dimensions(c, _testCases[i].Item2);
+
+            Assert.AreEqual(dimensions, Tuple.Create(_testCases[i].Item3, _testCases[i].Item4));
+        }
     }
 }
