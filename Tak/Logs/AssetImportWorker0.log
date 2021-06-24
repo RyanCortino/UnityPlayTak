@@ -15,11 +15,11 @@ C:/Users/Ryan/source/Repositories/UnityTaktician/Tak
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-60715
+50937
 Successfully changed project path to: C:/Users/Ryan/source/Repositories/UnityTaktician/Tak
 C:/Users/Ryan/source/Repositories/UnityTaktician/Tak
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 60.08 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 61.07 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.11f1 (99c7afb366b3)
 [Subsystems] Discovering subsystems at path A:/Program Files/Unity/Editor/Data/Resources/UnitySubsystems
@@ -35,94 +35,146 @@ Initialize mono
 Mono path[0] = 'A:/Program Files/Unity/Editor/Data/Managed'
 Mono path[1] = 'A:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'A:/Program Files/Unity/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56108
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56236
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: A:/Program Files/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002357 seconds.
+Registered in 0.001578 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 41.99 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 53.74 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.303 seconds
+- Completed reload, in  1.341 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.013802 seconds.
+Registered in 0.014650 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.56 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.52 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.266 seconds
+- Completed reload, in  1.933 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Refreshing native plugins compatible for Editor in 0.58 ms, found 2 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 0.80 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1489 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 67.4 MB.
-System memory in use after: 67.5 MB.
+System memory in use before: 67.3 MB.
+System memory in use after: 67.4 MB.
 
 Unloading 31 unused Assets to reduce memory usage. Loaded Objects now: 1910.
-Total: 2.866576 ms (FindLiveObjects: 0.161128 ms CreateObjectMapping: 0.066861 ms MarkObjects: 2.480170 ms  DeleteObjects: 0.156611 ms)
+Total: 5.789464 ms (FindLiveObjects: 0.561087 ms CreateObjectMapping: 0.098183 ms MarkObjects: 4.990751 ms  DeleteObjects: 0.136733 ms)
 
 ========================================================================
 Received Import Request.
   path: Assets/Scripts/Bitboard/Bitboard.cs
   artifactKey: Guid(794a73ef75d1a2a42bd0b31f7bde6b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Bitboard/Bitboard.cs using Guid(794a73ef75d1a2a42bd0b31f7bde6b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01781eaa64e7f394f19dcda592d48543') in 0.040519 seconds
-  Import took 0.043949 seconds .
+Start importing Assets/Scripts/Bitboard/Bitboard.cs using Guid(794a73ef75d1a2a42bd0b31f7bde6b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0fb6e3d6c59b4d0749487e228791544') in 0.109687 seconds
+  Import took 0.114334 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.013251 seconds.
+Registered in 0.013228 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.60 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.26 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.178 seconds
+- Completed reload, in  1.217 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.63 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.56 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1483 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 67.2 MB.
 System memory in use after: 67.3 MB.
 
 Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 1913.
-Total: 2.024794 ms (FindLiveObjects: 0.147575 ms CreateObjectMapping: 0.059030 ms MarkObjects: 1.795601 ms  DeleteObjects: 0.021383 ms)
+Total: 2.263020 ms (FindLiveObjects: 0.383997 ms CreateObjectMapping: 0.122879 ms MarkObjects: 1.733556 ms  DeleteObjects: 0.020781 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 104.907888 seconds.
-  path: Assets/Tests/bitboard.cs
-  artifactKey: Guid(935c44be9f6cb2a478ba43902eadca62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Tests/bitboard.cs using Guid(935c44be9f6cb2a478ba43902eadca62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '12f5c88c4c7a29305ff51b842b02e8dc') in 0.014638 seconds
-  Import took 0.017582 seconds .
+  Time since last request: 1723.708585 seconds.
+  path: Assets/Scripts/Bitboard/Bitboard.cs
+  artifactKey: Guid(794a73ef75d1a2a42bd0b31f7bde6b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Bitboard/Bitboard.cs using Guid(794a73ef75d1a2a42bd0b31f7bde6b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24719d909f5a3e8a68370854d64e3d6f') in 0.012289 seconds
+  Import took 0.014816 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.013978 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.78 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.227 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.58 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1483 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 67.2 MB.
+System memory in use after: 67.3 MB.
+
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 1916.
+Total: 2.096772 ms (FindLiveObjects: 0.146069 ms CreateObjectMapping: 0.059934 ms MarkObjects: 1.851315 ms  DeleteObjects: 0.037948 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.033342 seconds.
-  path: Assets/Tests/bitboard.cs
-  artifactKey: Guid(935c44be9f6cb2a478ba43902eadca62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Tests/bitboard.cs using Guid(935c44be9f6cb2a478ba43902eadca62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '12f5c88c4c7a29305ff51b842b02e8dc') in 0.006485 seconds
-  Import took 0.009579 seconds .
+  Time since last request: 502.423036 seconds.
+  path: Assets/Scripts/Bitboard/Bitboard.cs
+  artifactKey: Guid(794a73ef75d1a2a42bd0b31f7bde6b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Bitboard/Bitboard.cs using Guid(794a73ef75d1a2a42bd0b31f7bde6b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '12666ffdd4cb283b54936f5ce59e22d1') in 0.007761 seconds
+  Import took 0.010522 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.013026 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.53 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.233 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.53 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1483 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 67.2 MB.
+System memory in use after: 67.3 MB.
+
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 1919.
+Total: 2.089544 ms (FindLiveObjects: 0.146672 ms CreateObjectMapping: 0.058127 ms MarkObjects: 1.852520 ms  DeleteObjects: 0.030419 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 65.468818 seconds.
-  path: Assets/Scripts/Position.cs
-  artifactKey: Guid(f0f6e3a0bcf1cf243b033c02e7c86e02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Position.cs using Guid(f0f6e3a0bcf1cf243b033c02e7c86e02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2df4c702ac0ab291507324a78e72a209') in 0.010944 seconds
-  Import took 0.013848 seconds .
+  Time since last request: 354.375955 seconds.
+  path: Assets/Scripts/Bitboard/Bitboard.cs
+  artifactKey: Guid(794a73ef75d1a2a42bd0b31f7bde6b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Bitboard/Bitboard.cs using Guid(794a73ef75d1a2a42bd0b31f7bde6b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bdccb7b73b96e18eba1ae6d850517c1a') in 0.008163 seconds
+  Import took 0.011407 seconds .
 
 ========================================================================
-Received Import Request.
-  Time since last request: 3.133491 seconds.
-  path: Assets/Scripts/Hash.cs
-  artifactKey: Guid(cd19bddfb7d08424283fb80b958e3e8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Hash.cs using Guid(cd19bddfb7d08424283fb80b958e3e8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e811a29f040d338c0d4a84679c0038a') in 0.010659 seconds
-  Import took 0.013480 seconds .
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.014060 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.55 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.180 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.57 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1483 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 67.2 MB.
+System memory in use after: 67.3 MB.
+
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 1922.
+Total: 2.063342 ms (FindLiveObjects: 0.156912 ms CreateObjectMapping: 0.058127 ms MarkObjects: 1.825113 ms  DeleteObjects: 0.021986 ms)
 

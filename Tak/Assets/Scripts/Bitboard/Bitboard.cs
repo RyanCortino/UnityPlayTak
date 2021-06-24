@@ -8,13 +8,13 @@ public static class Bitboard
 {
     public struct Constants
     {
-        public int Size;
+        public uint Size;
         public ulong Left, Right, Top, Bottom;
         public ulong Edge;
         public ulong Mask;
     }
 
-    public static Constants Precompute(int size)
+    public static Constants Precompute(uint size)
     {
         Constants _constants = new Constants();
 
@@ -25,17 +25,17 @@ public static class Bitboard
 
         _constants.Size = size;
 
-        _constants.Left = _constants.Right << (size - 1);
+        _constants.Left = _constants.Right << (int)(size - 1);
 
-        _constants.Top = ((0b1UL << size) - 1) << (size * (size - 1));
+        _constants.Top = ((0b1UL << (int)size) - 1) << (int)(size * (size - 1));
 
-        _constants.Bottom = (0b1UL << size) - 1;
+        _constants.Bottom = (0b1UL << (int)size) - 1;
 
         _constants.Edge = (_constants.Left | _constants.Right | _constants.Bottom | _constants.Top);
 
         _constants.Mask
-            = (size < 8)   // Due to overflow restriction's we have to test for a single edge case.
-            ? (0b1UL << (size * size)) - 1
+            = ((int)size < 8)   // Due to overflow restriction's we have to test for a single edge case.
+            ? (0b1UL << ((int)size * (int)size)) - 1
             : ~0b0UL;
 
         return _constants;
@@ -68,10 +68,10 @@ public static class Bitboard
         return _next & within;
     }
 
-    public static Tuple<int, int> Dimensions(Constants constants, ulong bits)
+    public static Tuple<uint, uint> Dimensions(Constants constants, ulong bits)
     {
-        int _width = 0;
-        int _height = 0;
+        uint _width = 0;
+        uint _height = 0;
         ulong _bitMask = 0;
 
         if (bits == 0)
@@ -100,5 +100,32 @@ public static class Bitboard
         }
         
         return Tuple.Create(_width, _height);
+    }
+    
+    public static Tuple<uint, uint> BitCoordinates(Constants constants, ulong bits)
+    {
+        uint _x = 0;
+        uint _y = 0;
+
+        if (bits == 0 || (bits & (bits - 0b1ul)) != 0)
+        {
+            return Tuple.Create<uint, uint>(_x, _y);
+        }
+
+        uint n = TrailingZeros(bits);
+        _y = n / constants.Size;
+
+
+        return Tuple.Create<uint, uint>(_x, _y);
+    }
+
+    public static uint TrailingZeros(ulong x)
+    {
+        for (int i = 0x0; i < 64; i++)
+        {
+            if ((x & (0b1UL << i)) != 0)
+                    return (uint)i;
+        }
+        return 64;
     }
 }

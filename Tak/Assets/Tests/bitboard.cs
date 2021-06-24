@@ -13,7 +13,6 @@ public class bitboard
 
         // Act
         c = Bitboard.Precompute(5);
-
         expectedConstants.Bottom = (0b_1UL << 5) - 1;
         expectedConstants.Top = ((0b_1UL << 5) - 1) << (4 * 5);
         expectedConstants.Right = 0x0108421;
@@ -37,7 +36,6 @@ public class bitboard
 
         // Act
         c = Bitboard.Precompute(8);
-
         expectedConstants.Bottom = (0b_1ul << 8) - 1;
         expectedConstants.Top = ((0b_1ul << 8) - 1) << (7 * 8);
         expectedConstants.Right = 0x101010101010101;
@@ -55,32 +53,60 @@ public class bitboard
     [Test]
     public void test_flood()
     {
-        int size = 5;
+        // Arrange
+        uint size = 5;
         ulong bound = 0x108423c;
         ulong seed = 0x4;
         ulong expectedOut = 0x108421c;
 
+        // Act
         var c = Bitboard.Precompute(size);
         var actualOut = Bitboard.Flood(ref c, bound, seed);
 
+        // Assert
         Assert.AreEqual(expectedOut, actualOut);
     }
 
     [Test]
     public void test_dimensions()
     {
-        List<Tuple<int, ulong, int, int>> _testCases = new List<Tuple<int, ulong, int, int>>();
-        _testCases.Add(Tuple.Create(5, (ulong)0x108421c, 3, 5));
-        _testCases.Add(Tuple.Create(5, 0b_0UL, 0, 0));
-        _testCases.Add(Tuple.Create(5, (ulong)0x843800, 3, 3));
-        _testCases.Add(Tuple.Create(5, (ulong)0x08000, 1, 1));
+        // Arrange
+        List<Tuple<uint, ulong, uint, uint>> _testCases = new List<Tuple<uint, ulong, uint, uint>>();
+        _testCases.Add(Tuple.Create<uint, ulong, uint, uint>(5, 0x108421c, 3, 5));
+        _testCases.Add(Tuple.Create<uint, ulong, uint, uint>(5, 0, 0, 0));
+        _testCases.Add(Tuple.Create<uint, ulong, uint, uint>(5, 0x843800, 3, 3));
+        _testCases.Add(Tuple.Create<uint, ulong, uint, uint>(5, 0x08000, 1, 1));
 
         for (int i = 0; i < _testCases.Count; i++)
         {
+            // Act
             Bitboard.Constants c = Bitboard.Precompute(_testCases[i].Item1);
-            Tuple<int, int> dimensions = Bitboard.Dimensions(c, _testCases[i].Item2);
+            Tuple<uint, uint> actual = Bitboard.Dimensions(c, _testCases[i].Item2);
+            Tuple<uint, uint> expected = Tuple.Create(_testCases[i].Item3, _testCases[i].Item4);
 
-            Assert.AreEqual(dimensions, Tuple.Create(_testCases[i].Item3, _testCases[i].Item4));
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+    }
+
+    [Test]
+    public void test_trailing_zeros()
+    {
+        // Arrange
+        List<Tuple<ulong, uint>> _testCases = new List<Tuple<ulong, uint>>();
+        _testCases.Add(Tuple.Create<ulong, uint>(0x00, 64));
+        _testCases.Add(Tuple.Create<ulong, uint>(0x01, 0));
+        _testCases.Add(Tuple.Create<ulong, uint>(0x02, 1));
+        _testCases.Add(Tuple.Create<ulong, uint>(0x010, 4));
+
+
+        foreach (Tuple<ulong, uint> tc in _testCases)
+        {
+            // Act
+            uint actual = Bitboard.TrailingZeros(tc.Item1);
+
+            // Assert
+            Assert.AreEqual(tc.Item2, actual);
         }
     }
 }
