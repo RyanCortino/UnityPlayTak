@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public static class Bitboard
 {
@@ -51,7 +47,7 @@ public static class Bitboard
 
             if (_next == seed)
                 return _next;
-            
+
             seed = _next;
         }
     }
@@ -87,36 +83,48 @@ public static class Bitboard
             _bitMask >>= 1;
             _width++;
         }
-        
+
         _bitMask = constants.Top;
         while ((bits & _bitMask) == 0)
         {
             _bitMask >>= (int)constants.Size;
         }
         while ((_bitMask != 0) && ((bits & _bitMask) != 0))
-        { 
+        {
             _bitMask >>= (int)constants.Size;
             _height++;
         }
-        
+
         return Tuple.Create(_width, _height);
     }
-    
+
     public static Tuple<uint, uint> BitCoordinates(Constants constants, ulong bits)
     {
-        uint _x = 0;
-        uint _y = 0;
-
-        if (bits == 0 || (bits & (bits - 0b1ul)) != 0)
+        if ((bits == 0) || ((bits & (bits - 1)) != 0))
         {
-            return Tuple.Create<uint, uint>(_x, _y);
+
+            return Tuple.Create(0u, 0u);
         }
 
         uint n = TrailingZeros(bits);
-        _y = n / constants.Size;
+        uint _y = n / constants.Size;
+        uint _x = n % constants.Size; // returns remainder as: n - (n / size) * size 
 
+        return Tuple.Create(_x, _y);
+    }
 
-        return Tuple.Create<uint, uint>(_x, _y);
+    public static int Popcount(ulong x)
+    {
+        if (x == 0)
+            return 0;
+
+        x -= (x >> 1) & 0x5555555555555555;
+        x = (x >> 2) & 0x3333333333333333 + x & 0x3333333333333333;
+        x += x >> 4;
+        x &= 0x0f0f0f0f0f0f0f0f;
+        x *= 0x0101010101010101;
+
+        return Convert.ToInt32(x >> 56);
     }
 
     public static uint TrailingZeros(ulong x)
@@ -124,7 +132,7 @@ public static class Bitboard
         for (int i = 0x0; i < 64; i++)
         {
             if ((x & (0b1UL << i)) != 0)
-                    return (uint)i;
+                return (uint)i;
         }
         return 64;
     }
