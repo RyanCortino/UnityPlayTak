@@ -16,34 +16,34 @@ public static class Bitboard
 
         for (uint i = 0; i < size; i++)
         {
-            _constants.Right |= 0b1UL << (int)(i * size);
+            _constants.Right |= 1ul << (int)(i * size);
         }
 
         _constants.Size = size;
 
         _constants.Left = _constants.Right << (int)(size - 1);
 
-        _constants.Top = ((0b1UL << (int)size) - 1) << (int)(size * (size - 1));
+        _constants.Top = ((1ul << (int)size) - 1) << (int)(size * (size - 1));
 
-        _constants.Bottom = (0b1UL << (int)size) - 1;
+        _constants.Bottom = (1ul << (int)size) - 1;
 
         _constants.Edge = (_constants.Left | _constants.Right | _constants.Bottom | _constants.Top);
 
         _constants.Mask
-            = ((int)size < 8)   // Due to overflow restriction's we have to test for a single edge case.
-            ? (0b1UL << ((int)size * (int)size)) - 1
-            : ~0b0UL;
+            = ((int)size < 8)   // Due to overflow restrictions we have to test for a single edge case.
+            ? (1ul << ((int)size * (int)size)) - 1
+            : ~0ul;
 
         return _constants;
     }
 
-    public static ulong Flood(ref Constants constants, ulong within, ulong seed)
+    public static ulong Flood(Constants constants, ulong within, ulong seed)
     {
-        ulong _next = new ulong();
+        ulong _next = 0ul;
 
         while (true)
         {
-            _next = Grow(ref constants, within, seed);
+            _next = Grow(constants, within, seed);
 
             if (_next == seed)
                 return _next;
@@ -52,7 +52,7 @@ public static class Bitboard
         }
     }
 
-    public static ulong Grow(ref Constants constants, ulong within, ulong seed)
+    public static ulong Grow(Constants constants, ulong within, ulong seed)
     {
         ulong _next = seed;
 
@@ -66,9 +66,9 @@ public static class Bitboard
 
     public static Tuple<uint, uint> Dimensions(Constants constants, ulong bits)
     {
-        uint _width = 0;
-        uint _height = 0;
-        ulong _bitMask = 0;
+        uint _width = 0u;
+        uint _height = 0u;
+        ulong _bitMask = 0ul;
 
         if (bits == 0)
             return Tuple.Create(_width, _height);
@@ -129,9 +129,9 @@ public static class Bitboard
 
     public static uint TrailingZeros(ulong x)
     {
-        for (int i = 0x0; i < 64; i++)
+        for (int i = 0; i < 64; i++)
         {
-            if ((x & (0b1UL << i)) != 0)
+            if ((x & (1ul << i)) != 0)
                 return (uint)i;
         }
         return 64;
