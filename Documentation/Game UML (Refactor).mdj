@@ -222,7 +222,7 @@
 											"top": 276,
 											"width": 303.86865234375,
 											"height": 13,
-											"text": "+FloodGroups(Constants, ulong, []ulong): ulong",
+											"text": "+FloodGroups(Constants, ulong): List<ulong>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1046,10 +1046,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF6LppfoIH+E4I="
 							},
-							"name": "GameState",
-							"type": {
-								"$ref": "AAAAAAF6LqIHwYKn5rc="
-							}
+							"name": "GameState"
 						}
 					],
 					"operations": [
@@ -1076,9 +1073,6 @@
 									"_parent": {
 										"$ref": "AAAAAAF6Lp4f84KewLI="
 									},
-									"type": {
-										"$ref": "AAAAAAF6LqIHwYKn5rc="
-									},
 									"direction": "return"
 								}
 							]
@@ -1097,9 +1091,6 @@
 									"_parent": {
 										"$ref": "AAAAAAF6Lq1/Jogrwcw="
 									},
-									"type": {
-										"$ref": "AAAAAAF6LqIHwYKn5rc="
-									},
 									"direction": "return"
 								}
 							]
@@ -1117,9 +1108,6 @@
 									"_id": "AAAAAAF6LqvpdYgFxp4=",
 									"_parent": {
 										"$ref": "AAAAAAF6LqsUxIcPlt4="
-									},
-									"type": {
-										"$ref": "AAAAAAF6LqIHwYKn5rc="
 									},
 									"direction": "return"
 								}
@@ -1220,10 +1208,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF6LtxHf7TlVWY="
 							},
-							"name": "Position",
-							"type": {
-								"$ref": "AAAAAAF6LqIHwYKn5rc="
-							}
+							"name": "Position"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1574,7 +1559,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHPzd1a1GDg="
 									},
-									"name": "uint"
+									"name": "uint",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1603,7 +1589,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHQh1FgfNM4="
 									},
-									"name": "Constants"
+									"name": "Constants",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1611,7 +1598,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHQh1FgfNM4="
 									},
-									"name": "ulong"
+									"name": "ulong",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1619,7 +1607,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHQh1FgfNM4="
 									},
-									"name": "ulong"
+									"name": "ulong",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1646,7 +1635,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHcvXmPSLQs="
 									},
-									"name": "Constants"
+									"name": "Constants",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1654,7 +1644,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHcvXmPSLQs="
 									},
-									"name": "ulong"
+									"name": "ulong",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1662,7 +1653,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHcvXmPSLQs="
 									},
-									"name": "ulong"
+									"name": "ulong",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1701,19 +1693,11 @@
 								},
 								{
 									"_type": "UMLParameter",
-									"_id": "AAAAAAF6MHhQM2h9TlM=",
-									"_parent": {
-										"$ref": "AAAAAAF6MHfbuGexXAU="
-									},
-									"name": "[]ulong"
-								},
-								{
-									"_type": "UMLParameter",
 									"_id": "AAAAAAF6MHkTV2u1HRg=",
 									"_parent": {
 										"$ref": "AAAAAAF6MHfbuGexXAU="
 									},
-									"type": "ulong",
+									"type": "List<ulong>",
 									"direction": "return"
 								}
 							]
@@ -1732,7 +1716,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHmorHY72GI="
 									},
-									"name": "Constants"
+									"name": "Constants",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1740,7 +1725,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHmorHY72GI="
 									},
-									"name": "ulong"
+									"name": "ulong",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1767,7 +1753,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHo/xHwSZ8M="
 									},
-									"name": "Constants"
+									"name": "Constants",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1775,7 +1762,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF6MHo/xHwSZ8M="
 									},
-									"name": "ulong"
+									"name": "ulong",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -1990,10 +1978,7 @@
 								"$ref": "AAAAAAF6OP3+a28Mc+g="
 							},
 							"name": "mPosition",
-							"visibility": "private",
-							"type": {
-								"$ref": "AAAAAAF6LqIHwYKn5rc="
-							}
+							"visibility": "private"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -2001,10 +1986,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF6OP3+a28Mc+g="
 							},
-							"name": "Clone",
-							"type": {
-								"$ref": "AAAAAAF6LqIHwYKn5rc="
-							}
+							"name": "Clone"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -2021,10 +2003,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF6OP3+a28Mc+g="
 							},
-							"name": "Config",
-							"type": {
-								"$ref": "AAAAAAF6Lpt8n4I8bWw="
-							}
+							"name": "Config"
 						},
 						{
 							"_type": "UMLAttribute",
