@@ -1,15 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public static class Bitboard
 {
-    public struct Constants
-    {
-        public uint Size;
-        public ulong Left, Right, Top, Bottom;
-        public ulong Edge;
-        public ulong Mask;
-    }
-
     public static Constants Precompute(uint size)
     {
         Constants _constants = new Constants();
@@ -64,6 +57,35 @@ public static class Bitboard
         return _next & within;
     }
 
+    public static List<ulong> FloodGroups(Constants constants, ulong bits)
+    {
+        List<ulong> _outVal = new List<ulong>();
+        ulong _seen = 0ul;
+        ulong _g = 0ul;
+        ulong _next = 0ul;
+        ulong _bit = 0ul;
+
+        while (bits != 0)
+        {
+            _next = bits & (bits - 1);
+            _bit = (bits & ~_next);
+
+            if ((_seen & _bit) == 0)
+            {
+                _g = Flood(constants, bits, _bit);
+
+                if (_g != _bit)
+                    _outVal.Add(_g);
+
+                _seen |= _g;
+            }
+
+            bits = _next;
+        }
+
+        return _outVal;
+    }
+
     public static Tuple<uint, uint> Dimensions(Constants constants, ulong bits)
     {
         uint _width = 0u;
@@ -74,10 +96,12 @@ public static class Bitboard
             return Tuple.Create(_width, _height);
 
         _bitMask = constants.Left;
+
         while ((bits & _bitMask) == 0)
         {
             _bitMask >>= 1;
         }
+
         while ((_bitMask != 0) && ((bits & _bitMask) != 0))
         {
             _bitMask >>= 1;
@@ -85,10 +109,12 @@ public static class Bitboard
         }
 
         _bitMask = constants.Top;
+
         while ((bits & _bitMask) == 0)
         {
             _bitMask >>= (int)constants.Size;
         }
+
         while ((_bitMask != 0) && ((bits & _bitMask) != 0))
         {
             _bitMask >>= (int)constants.Size;
