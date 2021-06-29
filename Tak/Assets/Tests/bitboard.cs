@@ -8,8 +8,8 @@ public class bitboard
     public void test_precompute_5x5()
     {
         // Arrange
-        Bitboard.Constants _actual = new Bitboard.Constants();
-        Bitboard.Constants _expected = new Bitboard.Constants();
+        Constants _actual = new Constants();
+        Constants _expected = new Constants();
 
         // Act
         _actual = Bitboard.Precompute(5);
@@ -32,8 +32,8 @@ public class bitboard
     public void test_precompute_8x8()
     {
         // Arrange
-        Bitboard.Constants _actual = new Bitboard.Constants();
-        Bitboard.Constants _expected = new Bitboard.Constants();
+        Constants _actual = new Constants();
+        Constants _expected = new Constants();
 
         // Act
         _actual = Bitboard.Precompute(8);
@@ -56,7 +56,7 @@ public class bitboard
     public void test_flood()
     {
         // Arrange
-        Bitboard.Constants _constants = new Bitboard.Constants();
+        Constants _constants = new Constants();
 
         uint _size = 5u;
         ulong _bound = 0x108423c;
@@ -75,7 +75,7 @@ public class bitboard
     public void test_dimensions()
     {
         // Arrange
-        Bitboard.Constants _constants = new Bitboard.Constants();
+        Constants _constants = new Constants();
 
         List<Tuple<uint, ulong, uint, uint>> _testCases = new List<Tuple<uint, ulong, uint, uint>>
         {
@@ -106,7 +106,7 @@ public class bitboard
         // Arrange
         Tuple<uint, uint> _expected = Tuple.Create<uint, uint>(0, 0);
         Tuple<uint, uint> _actual = Tuple.Create<uint, uint>(0, 0);
-        Bitboard.Constants _c = new Bitboard.Constants();
+        Constants _c = new Constants();
         ulong _bit = 0ul;
 
         // _testCases: BoardSize, X, Y
