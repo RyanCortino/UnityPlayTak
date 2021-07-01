@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public struct Position
 {
-    public Config config { get; private set; }
+    Config config;
     
     byte whiteStones;
     byte whiteCapstones;
@@ -20,77 +20,39 @@ public struct Position
 
     ulong hash;
 
-    public Position Preallocate(int size)
+    public static Position New(Config cfg)
     {
-        var _position = new Position();
+        Position _position = new Position();
 
-        _position.config = new Config { Size = size };
+        _position.config = cfg;
+        _position.whiteStones = (byte)cfg.Stones;
+        _position.whiteCapstones = (byte)cfg.CapStones;
+        _position.blackStones = (byte)cfg.Stones;
+        _position.blackCapstones = (byte)cfg.CapStones;
+        _position.turnCount = 0;
 
-        return Allocate(ref _position);
+        _position.White = 0ul;
+        _position.Black = 0ul;
+        _position.StandingStones = 0ul;
+        _position.Capstones = 0ul;
+
+        _position = Clone(_position);
+
+        _position.hash = Hash.fnvBasis;
+
+        return _position;
     }
 
-    private Position Allocate(ref Position position)
+    public static Position Clone(Position src)
     {
-        Position p = new Position();
+        Position _position = new Position();
+        int _size = src.config.Size;
 
-        switch (position.config.Size)
-        {
-            case 3:
-                p = new Position();
-                p.Height = PreAllocateList.Repeated(new byte(), 3 * 3);
-                p.Stacks = PreAllocateList.Repeated(new ulong(), 3 * 3);
-                p.analysis.WhiteGroups = PreAllocateList.Repeated(new ulong(), 6);
-                p.Height = position.Height;
-                p.Stacks = position.Stacks;
+        _position = src;        
+        _position.Height = new List<byte>(_size * _size);
+        _position.Stacks = new List<ulong>(_size * _size);
+        _position.analysis.WhiteGroups = new List<ulong>(_size * 2);
 
-                return p;
-            case 4:
-                p = new Position();
-                p.Height = PreAllocateList.Repeated(new byte(), 4 * 4);
-                p.Stacks = PreAllocateList.Repeated(new ulong(), 4 * 4);
-                p.analysis.WhiteGroups = PreAllocateList.Repeated(new ulong(), 8);
-                p.Height = position.Height;
-                p.Stacks = position.Stacks;
-
-                return p;
-            case 5:
-                p = new Position();
-                p.Height = PreAllocateList.Repeated(new byte(), 5 * 5);
-                p.Stacks = PreAllocateList.Repeated(new ulong(), 5 * 5);
-                p.analysis.WhiteGroups = PreAllocateList.Repeated(new ulong(), 10);
-                p.Height = position.Height;
-                p.Stacks = position.Stacks;
-
-                return p;
-            case 6:
-                p = new Position();
-                p.Height = PreAllocateList.Repeated(new byte(), 6 * 6);
-                p.Stacks = PreAllocateList.Repeated(new ulong(), 6 * 6);
-                p.analysis.WhiteGroups = PreAllocateList.Repeated(new ulong(), 12);
-                p.Height = position.Height;
-                p.Stacks = position.Stacks;
-
-                return p;
-            case 7:
-                p = new Position();
-                p.Height = PreAllocateList.Repeated(new byte(), 7 * 7);
-                p.Stacks = PreAllocateList.Repeated(new ulong(), 7 * 7);
-                p.analysis.WhiteGroups = PreAllocateList.Repeated(new ulong(), 14);
-                p.Height = position.Height;
-                p.Stacks = position.Stacks;
-
-                return p;
-            case 8:
-                p = new Position();
-                p.Height = PreAllocateList.Repeated(new byte(), 8 * 8);
-                p.Stacks = PreAllocateList.Repeated(new ulong(), 8 * 8);
-                p.analysis.WhiteGroups = PreAllocateList.Repeated(new ulong(), 16);
-                p.Height = position.Height;
-                p.Stacks = position.Stacks;
-
-                return p;
-            default:
-                throw new NotImplementedException();
-        }
+        return _position;
     }
 }
