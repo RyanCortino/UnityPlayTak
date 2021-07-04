@@ -1,58 +1,62 @@
-using System;
 using System.Collections.Generic;
 
-public struct Position
+public struct Position : IPosition
 {
-    Config config;
+    // Properties
+    public Config Config { get; set; }
+    public List<byte> Height { get; set; }
+    public List<ulong> Stacks { get; set; }
+    public Analysis Analysis { get; set; }
+    public int MoveNumber { get; set; }
+    public ulong White { get; set; }
+    public ulong Black { get; set; }
+    public ulong Standing { get; set; }
+    public ulong Capstones { get; set; }
+    public byte WhiteStones { get; set; }
+    public byte BlackStones { get; set; }
+    public byte WhiteCapstones { get; set; }
+    public byte BlackCapstones { get; set; }
+    public ulong Hash { get; set; }
     
-    byte whiteStones;
-    byte whiteCapstones;
-    byte blackStones;
-    byte blackCapstones;
-
-    int turnCount;
-
-    ulong White, Black, StandingStones, Capstones;
-    List<byte> Height;
-    List<ulong> Stacks;
-
-    Analysis analysis;
-
-    ulong hash;
-
-    public static Position New(Config cfg)
+    public int Size => Config.Size;
+    
+    public Position(Config config)
     {
-        Position _position = new Position();
+        Config = config;
+        MoveNumber = 0;
 
-        _position.config = cfg;
-        _position.whiteStones = (byte)cfg.Stones;
-        _position.whiteCapstones = (byte)cfg.CapStones;
-        _position.blackStones = (byte)cfg.Stones;
-        _position.blackCapstones = (byte)cfg.CapStones;
-        _position.turnCount = 0;
+        WhiteStones = (byte)Config.Stones;
+        WhiteCapstones = (byte)Config.CapStones;
+        BlackStones = (byte)Config.Stones;
+        BlackCapstones = (byte)Config.CapStones;
 
-        _position.White = 0ul;
-        _position.Black = 0ul;
-        _position.StandingStones = 0ul;
-        _position.Capstones = 0ul;
+        White = 0ul;
+        Black = 0ul;
+        Standing = 0ul;
+        Capstones = 0ul;
 
-        _position = Clone(_position);
+        Height = new List<byte>();
+        Stacks = new List<ulong>();
+        Analysis = new Analysis
+        {
+            WhiteGroups = new List<ulong>(),
+            BlackGroups = new List<ulong>()
+        };
 
-        _position.hash = Hash.fnvBasis;
+        Hash = global::Hash.fnvBasis;
 
-        return _position;
+        this = (Position)Allocate.Alloc(this);
     }
 
-    public static Position Clone(Position src)
+    public void Analyze()
     {
-        Position _position = new Position();
-        int _size = src.config.Size;
+        ulong _wr = (White & ~Standing);
+        ulong _br = (Black & ~Standing);
 
-        _position = src;        
-        _position.Height = new List<byte>(_size * _size);
-        _position.Stacks = new List<ulong>(_size * _size);
-        _position.analysis.WhiteGroups = new List<ulong>(_size * 2);
-
-        return _position;
+        Analysis = new Analysis
+        {
+            WhiteGroups = Bitboard.FloodGroups(Config.Constants, _wr),
+            BlackGroups = Bitboard.FloodGroups(Config.Constants, _br)
+        };
     }
 }
