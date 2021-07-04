@@ -2,5 +2,6 @@
 
 public struct Analysis
 {
-    public List<ulong> WhiteGroups, BlackGroups;
+    public List<ulong> WhiteGroups;
+    public List<ulong> BlackGroups;
 }
